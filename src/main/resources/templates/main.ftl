@@ -5,6 +5,7 @@
 
     <div>
         <@l.logout />
+        <span><a href="/user">User list</a></span>
     </div>
 
     <div>
@@ -18,18 +19,16 @@
 
 <div>Messages List</div>
     <form method="get" action="/main">
-        <input type="text" name="filter" value="${filter}"/>
+        <input type="text" name="filter" value="${filter?ifExists}"/>
         <button type="submit">Search</button>
     </form>
 <#list messages as message>
-    <#if messages == null>
     <div>
     <b>${message.id}</b>
     <span>${message.text}</span>
     <i>${message.tag}</i>
         <Strong>${message.authorName}</Strong>
     </div>
-    </#if>
     <#else >
     No messages
 </#list>
