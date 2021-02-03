@@ -1,6 +1,9 @@
 package io.exiled.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Message {
@@ -8,7 +11,11 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Text can't be empty")
+    @Length(max = 2048, message = "Message too long(more than 2kb)")
     private String text;
+    @NotBlank(message = "Tag can't be empty")
+    @Length(max = 255, message = "Tag too long(more than 255 symbols)")
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)
